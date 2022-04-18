@@ -1,0 +1,43 @@
+
+<div class="row text-left">
+  <form >
+    <div class="col-6">
+      <div class="input-form mb-3">
+          <label>id</label>
+          <input type="text" class="form-control" name="id" #id="ngModel"  [(ngModel)]="product.id"
+            placeholder="id"
+            aria-describedby="basic-addon1" required pattern="[0-9]+">
+        </div>
+
+        <div class="input-form mb-3">
+            <label>name</label>
+            <input type="text" class="form-control" placeholder="name" name="Name"  [(ngModel)]="product.Name"  aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+
+          
+        <div class="input-form mb-3">
+          <label>Qauntity</label>
+          <input type="text" class="form-control" placeholder="Quantity" name="Quantity"  [(ngModel)]="product.Quantity"  aria-describedby="basic-addon1">
+        </div>
+        <div class="input-form mb-3">
+          <label>price</label>
+          <input type="text" class="form-control" placeholder="price" name="Price"  [(ngModel)]="product.Price"  aria-describedby="basic-addon1">
+        </div>
+          <div class="input-form mb-3">
+              <label>Category</label>
+              <select class="form-control"   name="CateogryID"  [(ngModel)]="product.CateogryID" >
+                      <option [value]="item.id" *ngFor="let item of catlist">{{item.Name}}</option>
+   
+              </select>
+           
+            </div>
+           
+            
+               <button class="btn btn-primary" type="submit" *ngIf="!product.id" (click)="addproduct()">Add product</button>
+  
+               <button class="btn btn-primary" type="submit" *ngIf="product.id" (click)="Updateproduct()">update product</button>
+  
+  </div>
+  </form>
+   
+</div>

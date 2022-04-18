@@ -1,0 +1,127 @@
+
+<div class="row text-left">
+    <form (submit)="Register()" [formGroup]="userform">
+      <div class="col-6">
+        
+          <div class="input-form mb-3">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="name" name="Name"  formControlName="Name"
+               [class.is-valid]="userform.get('Name')?.valid"  [class.is-invalid]="userform.get('Name')?.invalid" />
+
+               <div [hidden]="Name?.valid || Name?.untouched" class="text text-danger">
+                        <span *ngIf="Name?.errors?.['required']">
+                            Name is required
+                        </span>
+                        <span *ngIf="Name?.errors?.['minlength']">
+                            Name is required at least 5 charcaters
+                        </span>
+               </div>
+            </div>
+  
+            
+          <div class="input-form mb-3">
+            <label>Email</label>
+            <input type="text" class="form-control" placeholder="email" name="email"  formControlName="email"
+            [class.is-valid]="userform.get('email')?.valid"  [class.is-invalid]="userform.get('email')?.invalid"/>
+            <div [hidden]="email?.valid || email?.untouched" class="text text-danger">
+              <span *ngIf="email?.errors?.['required']">
+                  Name is required
+              </span>
+              <span *ngIf="email?.errors?.['email']">
+                  input is must be Email
+              </span>
+     </div>
+          </div>
+          <div class="input-form mb-3 " id="phone" formArrayName="phone">
+              <div *ngFor="let p of phone.controls; let i=index"> 
+                <label class="form-lable">phone</label>
+                <input type="text" class="form-control  mt-3"  placeholder="phone"  name="phone{{i+1}}" id="phone{{i+1}}"  [formControlName]="i"
+                 />
+                <button class="btn btn-success float-end mt-3 " id="addphone" *ngIf="p.value &&i== phone.controls.length-1" type="button" (click)="addphone()">+</button>
+                <button class="btn btn-warning float-end mt-3 me-3 " id="addphone" *ngIf="p.value &&i!=0 &&i== phone.controls.length-1 " type="button" (click)="deletephone(i)">-</button>
+              </div>
+              <div [hidden]="phone?.valid || phone?.untouched" class="text text-danger">
+                <span *ngIf="phone?.errors?.['required']">
+                    Name is required
+                </span>
+                <span *ngIf="phone?.errors?.['maxlength']">
+                    Name is required at least 5 charcaters
+                </span>
+              </div>
+            
+          </div>
+            
+          <div class="input-form mb-3 mt-5" formGroupName="address">
+            <label>Adress</label>
+            <input type="text" class="form-control" placeholder="city" name="city"   formControlName="city" 
+            [class.is-valid]="userform.get('address.city')?.valid"  [class.is-invalid]="userform.get('address.city')?.invalid"/>
+            <input type="text" class="form-control mt-3" placeholder="postalcode" name="postalcode"   formControlName="postalcode"
+            [class.is-valid]="userform.get('address.postalcode')?.valid"  [class.is-invalid]="userform.get('address.postalcode')?.invalid"/>
+            <input type="text" class="form-control mt-3" placeholder="street" name="street"   formControlName="street"
+            [class.is-valid]="userform.get('address.street')?.valid"  [class.is-invalid]="userform.get('address.street')?.invalid"/>
+          </div>
+
+          <div class="input-form mb-3">
+            <label>password</label>
+            <input type="text" class="form-control" placeholder="password" name="password"   formControlName="password"
+            [class.is-valid]="userform.get('password')?.valid"  [class.is-invalid]="userform.get('password')?.invalid"/>
+
+            <div [hidden]="password?.valid || password?.untouched" class="text text-danger">
+              <span *ngIf="password?.errors?.['required']">
+                  Name is required
+              </span>
+              <span *ngIf="password?.errors?.['minlength']">
+                  Name is required at lest 6 charcaters
+              </span>
+
+              <span *ngIf="password?.errors?.['pattern']">
+                	Password should have at least one: Capital letter, small letter, number, special character 
+            </span>
+            </div>
+          </div>
+          <div class="input-form mb-3">
+            <label>Confiram password</label>
+            <input type="text" class="form-control" placeholder="Confiram password" name="cpassword" formControlName="cpassword" 
+            [class.is-valid]="cpassword?.valid"  [class.is-invalid]="cpassword?.invalid"/>
+            <div [hidden]="cpassword?.valid || cpassword?.untouched" class="text text-danger">
+              <span *ngIf="cpassword?.errors?.['required']">
+                  Name is required
+              </span>
+              <span *ngIf="cpassword?.errors?.['notEquivalent']">
+               password and confiramed password not matach
+              </span>
+            </div>
+          </div>
+          
+          <div class="input-form mb-3">
+            
+            <input type="radio" class="form-check-input"    name="Delivery" value="any"   formControlName="Delivery"/>
+            <label class="me-4">anyDay</label>
+            
+            <input type="radio" class="form-check-input"  name="Delivery" #day  checked formControlName="Delivery" >
+            <label>SpecificDay</label>
+          </div>
+                 
+          <div class="input-form mb-3"   *ngIf="day.checked">
+            <label>spacific Day</label>
+             <select class="form-control" formControlName="Delivery"  >
+                 <option value="sunday">sunday</option>
+                 <option value="Monday">Monday</option>
+                 <option value="tuesday">tuesday</option>
+                 <option value="wedesday">wedesday</option>
+                 <option value="thursday">thursday</option>
+                 <option value="friday">friday</option>
+                 <option value="saturday">saturday</option>
+             </select>
+          </div>
+          
+          <button class="btn btn-primary" type="submit" [disabled]="userform.invalid">Register</button>
+    
+      
+    
+    </div>
+    </form>
+     
+    
+  </div>
+  

@@ -1,0 +1,13 @@
+<div class="mb-3 form-group w-50 mx-auto">
+    <label for="" >Categories:</label>
+    <select name="" id="" class="form-control"  [(ngModel)]="selectedCatID" >
+      <option value="0" selected>Select Catogery</option>
+        <option *ngFor="let cat of catList" [value]="cat.id">{{cat.Name}}</option>
+    </select>
+  <p>{{selectedCatID}}</p>  
+  </div>
+
+
+ <app-product class="col-9" [recivedCatID]="selectedCatID" (totalpriceCard)="tochangetotalprice($event)" ></app-product> 
+
+ <h2>Total price : {{recivedTotalprice}}</h2>

@@ -1,0 +1,19 @@
+<div class="card mb-4 mx-auto" style="width: 18rem; height: 27rem;" appProductCard>
+    <div class="w-50 h-50 mx-auto">
+     <img class="card-img-top " src="{{product.Img}}" alt="Card image cap">
+    </div>
+    
+     <div class="card-body">
+       <h5 class="card-title">{{product.Name}}</h5>
+       <p class="card-text">Price: {{product.Price}}</p>
+       <p class="card-text">Quantity:{{product.Quantity}}</p>
+       
+       <a href="#" class="btn btn-primary">Go somewhere</a>
+     </div>
+   
+ 
+ </div>
+
+ <button class="btn btn-success me-4"  [disabled]="currentId==productListId[0]" (click)="previousProduct()">Previous</button>
+ <button class="btn btn-primary me-4"  (click)="Goback()"  >Back</button>
+ <button class="btn btn-danger me-4" [disabled]="currentId==productListId[productListId.length-1]" (click)="NextProduct()">Next</button>

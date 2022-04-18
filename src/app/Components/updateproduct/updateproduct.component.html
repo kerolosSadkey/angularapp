@@ -1,0 +1,38 @@
+<div class="row text-left">
+    <div class="col-6">
+        <div class="input-form mb-3">
+            <!-- <label>id</label> -->
+            <input type="hidden" class="form-control" placeholder="id" [value]="product.id" #id aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-form mb-3">
+              <label>name</label>
+              <input type="text" class="form-control" placeholder="name" [value]="product.Name" #name aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            
+          <div class="input-form mb-3">
+            <label>Qauntity</label>
+            <input type="text" class="form-control" placeholder="name" [value]="product.Quantity" #quantity aria-describedby="basic-addon1">
+          </div>
+          <div class="input-form mb-3">
+            <label>price</label>
+            <input type="text" class="form-control" placeholder="name" [value]="product.Price" #price aria-describedby="basic-addon1">
+          </div>
+            <div class="input-form mb-3">
+                <label>Category</label>
+                <select class="form-control" #catid  >
+                        <option [value]="item.id" *ngFor="let item of catlist">{{item.Name}}</option>
+     
+                </select>
+             
+              </div>
+             
+                 <button class="btn btn-primary" 
+                 (click)="Updateproduct(+id.value,name.value,+quantity.value,+price.value,+catid.value)">Update product</button>
+    
+    
+    
+    </div>
+</div>
+

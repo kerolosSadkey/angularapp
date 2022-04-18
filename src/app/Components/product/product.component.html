@@ -1,0 +1,99 @@
+<div style="height: 100%; background-color: darkkhaki;">
+
+<!-- 
+<div>
+     <h1 *ngIf="" >Name Of Store {{store.Name}}</h1>
+     <p>Branches {{store.Name}}</p>
+     <ul *ngFor="let b of store.branches">
+         <li>{{b}}</li>
+     </ul>
+     <img src="{{store.Logo}}" class="img-fluid w-25" /><br><br>
+     <h3 *ngIf="IsPurshased">Client Name :{{ClientName}}</h3>
+     
+</div> -->
+
+<!-- <h3>todayDate: {{ today | date:"longDate"}}</h3>  -->
+
+<!-- <div class="mb-3 form-group w-50 mx-auto">
+Nationalid  <input [(ngModel)]="Nationalid">
+  <p>{{Nationalid |nationalPipe}}</p>
+</div> -->
+
+<!-- <div class="mb-3 form-group w-50 mx-auto">
+ CardNumber <input [(ngModel)]="CardNumber">
+  <p>{{CardNumber |cardNumber}}</p>
+</div> -->
+
+
+
+
+
+<table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quentity</th>
+        <th scope="col">Price</th>
+        <th scope="col">CatogaryID</th>
+        <td scope="col">Details</td>
+        <td scope="col">update</td>
+        <td scope="col">Delete</td>
+        <th scope="col">Add Count</th>
+        <th scope="col">Buy</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr    *ngFor="let i of productListOfcatId ;let ind=index" [hidden]="i.Quantity==0" [ngStyle]="{'background-color':i.Quantity==1?'red':'#000','color':'#fff'}" >
+        <ng-container  >
+        <th scope="row">{{ind+1}}</th>
+        <td> {{i.Name}}</td>
+        <td  >{{i.Quantity }}</td>
+        <td>{{i.Price | currency:"EGP"}}</td>
+        <td>{{i.CateogryID}}</td>
+        <td><button class="btn btn-primary" (click)="productDetails(i.id)">Detalis</button></td>
+        <td><button class="btn btn-primary" (click)="updateproduct(i.id)">update</button></td>
+        <td><button class="btn btn-primary" (click)="Deleteproduct(i.id)">Delete</button></td>
+        <td><input type="number" class="form-control w-75" #count> </td>
+       <td><button class="btn btn-primary" [disabled]="i.Quantity==0" (click)="addtocart(i.id,count.value)">ADD To Card</button> </td> 
+      </ng-container>
+      </tr>
+     
+    </tbody>
+  </table>
+ 
+  <div>
+      <h1 *ngIf='Discount'>Discount</h1>
+      
+  </div>
+  <h2>{{checkout ||checkout }}</h2>
+  <div class="row">
+    
+  <div  *ngFor="let i of productListOfcard;let ind=index" class="col-4">
+      <ng-container   >
+      <div class="card mb-4" style="width: 18rem; height: 25rem;" appProductCard>
+         <div class="w-50 h-50 mx-auto">
+          <img class="card-img-top " src="{{i.Img}}" alt="Card image cap">
+         </div>
+         
+          <div class="card-body">
+            <h5 class="card-title">{{i.Name}}</h5>
+            <p class="card-text">Price: {{i.Price}}</p>
+            <p class="card-text">Quantity:{{i.count}}</p>
+            <p class="card-text">Total Price:{{i.count! * i.Price}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        
+      
+      </div>
+    
+    </ng-container>
+ 
+    
+   
+</div>
+
+<button class="btn btn-primary mb-4" *ngIf="productListOfcard.length >0" (click)="checkOut(productListOfcard)">Check Out</button>
+</div>
+</div>
